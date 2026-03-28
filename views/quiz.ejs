@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <%
+        let questionCount = locals.totalQuestions ?? 0;
+        let score = locals.totalCorrect ?? 0;
+
+        let randomIndex = parseInt(Math.random() * chosenWords.length);
+        let chosenWord = chosenWords[randomIndex];
+        let [correctWord, correctPart, correctDef] = chosenWord.split('\t');
+    %>
+
+    <% if (questionCount == 0) { %>
+        <h1>Welcome to the Word Quiz!</h1>
+    <% } else { %>
+        <h1>Score <%= score %>/<%= questionCount %></h1>
+    <% } %>
+
+    <h2><%= correctWord %> - <%= correctPart %></h2>
+
+    <form action="/quiz" method="post">
+        <ol>
+            <% for (currentWord of chosenWords) { 
+                let [word, part, def] = currentWord.split('\t'); %>
+                <li>
+                    <label>
+                        <input type="radio" name="userChoice" value="<%= def %>">
+                        <%= def %>
+                    </label>
+                </li>
+            <% } %>
+        </ol>
+
+        <input type="hidden" name="correctDef" value="<%= correctDef %>">
+        <input type="hidden" name="totalQuestions" value="<%= questionCount %>">
+        <input type="hidden" name="totalCorrect" value="<%= score %>">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
