@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   
-    <title>Document</title>
-</head>
-<body>
-    <form action="http://www.google.com/search">
-        <div>
-            Let's search Google:
-            <input type="text" name="q" value="spiderman" />
-            <input type="submit" />
-        </div>
+ <head> 
+        <title>Document</title> 
+    </head>
+    <body>
+        <form action="http://www.google.com/search">
+            <div>
+                Let's search Google:
+                <input type="text" name="q" value="spiderman" />
+                <input type="submit" />
+            </div>
+        </form>
         
-    </form>
-    <br><hr>
-<form action ="submit">
-   username<input type="text" size="10" maxlength="8" ><br>
-  <div>
-    <p> What toppings do you want on your pizza?</p>
-    <input type="checkbox" > Pepperoni<br>
-    <input type="checkbox" > Sausage<br>
-    <input type="checkbox" > Chicken<br>
-  </div>
-   <input type="submit" >
-
-</form>
-</body>
+        <br><hr>
+        
+        <form action="/submit" method="POST">
+            username: <input type="text" name="username" size="10" maxlength="8"><br>
+            <div>
+                <p>What toppings do you want on your pizza?</p>
+                <input type="checkbox" name="topping" value="pepperoni"> Pepperoni<br>
+                <input type="checkbox" name="topping" value="sausage"> Sausage<br>
+                <input type="checkbox" name="topping" value="chicken"> Chicken<br>
+            </div>
+            <input type="submit" value="Submit Order">
+        </form>
+    </body>
 </html>

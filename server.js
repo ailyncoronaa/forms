@@ -31,6 +31,6 @@ app.post('/submit', (req, res) => {
 });
 
 app.listen(3030, () => {
-  console.log('Server is listening on port 3030');
+  console.log('Server running on http://localhost:3030');
 });
 // app.listen(3030)
