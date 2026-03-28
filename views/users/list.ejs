@@ -8,9 +8,27 @@
 <body>
     <h1>Our Current Users</h1>
 
-    <% let users = locals.users; %>
-    <% for (user of users) { %>
-        <div><%= user.firstName %></div>
-    <% } %>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+
+        <% users.forEach((user, index) => { %>
+            <tr>
+                <td><%= user.firstName %></td>
+                <td><%= user.lastName %></td>
+                <td><%= user.gender %></td>
+                <td><%= user.age %></td>
+                <td><a href="/users/<%= index %>">View</a></td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <br>
+    <a href="/users/new">Add New User</a>
 </body>
 </html>
