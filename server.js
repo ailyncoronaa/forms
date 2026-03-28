@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const userRouter = require('./routes/user');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -7,8 +8,15 @@ app.use(express.static("public"));
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/user', userRouter);
 
 // GET /submit - logs query parameters
+app.get('/solution', (req, res) => {
+    let num1 = parseInt(req.query['num1']);
+    let num2 = parseInt(req.query['num2']);
+    let total = num1 + num2;
+    res.send(`${num1} + ${num2} = ${total}`);
+});
 app.get('/submit', (req, res) => {
   console.log('--- GET Request Received ---');
   console.log('Query Parameters:', req.query);
