@@ -8,6 +8,9 @@ router.get('/', async (req, res) => {
     res.render('quiz', { chosenWords, totalQuestions: 0, totalCorrect: 0 });
 });
 
+router.post('/', (req,res) => {
+    console.log(req.body);
+});
 let getWords = async () => {
     console.log("Getting random Part!");
     let randomPart = getRandomPart();
