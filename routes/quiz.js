@@ -5,7 +5,7 @@ const { readFile } = require('fs').promises;
 router.get('/', async (req, res) => {
     let chosenWords = await getWords();
     console.log("Chosen Words: ", chosenWords);
-    res.render('quiz', { chosenWords, totalQuestions: 0, totalCorrect: 0 });
+    res.render('quiz', { chosenWords, totalQuestions: 0, totalCorrect: 0, resultMessage:"", resultClass:"", correctDefinition:""});
 });
 
 router.post('/', async (req,res) => {
@@ -13,13 +13,21 @@ router.post('/', async (req,res) => {
     let { userChoice, correctDef, totalQuestions, totalCorrect } = req.body;
     totalQuestions = parseInt(totalQuestions);
     totalCorrect = parseInt(totalCorrect);
+    let resultMessage = "Incorrect!";
+    let resultClass = "incorrect";
+    let correctDefinition = "";
     if (userChoice === correctDef) {
         console.log("User guessed correctly!")
         totalCorrect = totalCorrect +1;
+        resultMessage = "Correct!";
+        resultClass = "correct";
+    }
+    if (userChoice !== correctDef) {
+        correctDefinition = correctDef
     }
     totalQuestions = totalQuestions +1;
     let chosenWords = await getWords();
-    res.render('quiz', { chosenWords, totalQuestions, totalCorrect });
+    res.render('quiz', { chosenWords, totalQuestions, totalCorrect, resultMessage, resultClass, correctDefinition });
 });
 let getWords = async () => {
     console.log("Getting random Part!");
